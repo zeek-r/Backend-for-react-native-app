@@ -27,7 +27,7 @@ var User = sequelize.define('user', {
             defaultValue : 'inactive'
         }
     },
-)
+);
 
 User.sync({force : false})
     .then(console.log('User Created Successfully'));
