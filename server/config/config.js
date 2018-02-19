@@ -1,10 +1,10 @@
 var config = {
     port : 3000,
-    env : 'development',
+    env : 'production',
     db : 'astrid',
     dbUser : 'root',
     dbPass : 'root',
-    dbHost : 'localhost',
+    dbHost : 'mysql.backend.svc',
     dbDialect : 'mysql',
     secret : 'R@gn@RLothBrok@AstridAppInReact'
 }
