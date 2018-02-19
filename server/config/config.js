@@ -1,5 +1,5 @@
 var config = {
-    port : 3000,
+    port : process.env.PORT || 5000,
     env : 'production',
     db : 'sql12222106',
     dbUser : 'sql12222106',
