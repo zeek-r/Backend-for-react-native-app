@@ -18,8 +18,5 @@
   },
   "scripts": {
     "start": "node server-start"
-  },
-  "devDependencies": {
-    "morgan": "^1.9.0",
   }
 }
