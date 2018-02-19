@@ -2,7 +2,7 @@ var config = {
     port : 3000,
     env : 'production',
     db : 'astrid',
-    dbUser : 'root',
+    dbUser : 'roshan',
     dbPass : 'root',
     dbHost : 'mysql.backend.svc',
     dbDialect : 'mysql',
