@@ -4,7 +4,7 @@ var config = {
     db : 'sql12222106',
     dbUser : 'sql12222106',
     dbPass : 'rCNGtmY5Ai',
-    dbHost : 'localhost',
+    dbHost : 'sql12.freemysqlhosting.net',
     dbDialect : 'mysql',
     secret : 'R@gn@RLothBrok@AstridAppInReact'
 }
