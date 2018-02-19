@@ -3,8 +3,8 @@ var config = {
     env : 'production',
     db : 'sql12222106',
     dbUser : 'sql12222106',
-    dbPass : 'rCNGtmY5Ai',
-    dbHost : 'sql12.freemysqlhosting.net',
+    dbPass : 'localhost',
+    dbHost : 'localhost',
     dbDialect : 'mysql',
     secret : 'R@gn@RLothBrok@AstridAppInReact'
 }
