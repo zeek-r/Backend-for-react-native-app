@@ -28,7 +28,6 @@ var authController = {
     },
 
     login : function(req, res) {
-    	console.log(req);
         User.findOne ({ 
             where :  {
                 email : req.body.username
