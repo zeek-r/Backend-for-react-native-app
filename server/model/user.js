@@ -30,7 +30,17 @@ var User = sequelize.define('user', {
 );
 
 User.sync({force : false})
-    .then(console.log('User Created Successfully'));
-
-
+    .then(() => {
+        User.findOrCreate({
+            where : {
+                id : 1
+            },
+            defaults : {
+                email : 'r@r.com',
+                password : 'reactnative@pp',
+                status : 'active'
+            } 
+        }).then(console.log('User Created Successfully'))
+    });
+    
 module.exports = User;
