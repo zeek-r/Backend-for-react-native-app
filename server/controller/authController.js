@@ -35,11 +35,11 @@ var authController = {
         })
         .then (user => {
             if(!user) {
-                res.status(401)
+                res.status(401);
                 res.json( { message : "Authentication failed, User not found" } );
             }
             else if(user) {
-                if(user.status != 'active'){
+                if(user.status !== 'active'){
                     res.status(401)
                     res.json( { message : "Without activation you shall not pass. Please contact our admin for a/c activation" } );
                 }
@@ -49,18 +49,20 @@ var authController = {
                         type : user.type,
                         email : user.email,
                         _uid : user.id,
-                        status : user.status
+                        status : user.status,
+                        name : user.firstName + user.lastName
                     };
 
                     const token = tokenHelper.sign(payload);
                     res.json ({
                         success : true,
-                        token : token
+                        token : token,
+                        user : payload
                     })
                 }
                 else { 
                     res.status(401);
-                    res.json({message : "You Shall not pass"});
+                    res.json({message : "Wrong Password,You Shall not pass"});
                 }
             }
         });
