@@ -30,6 +30,18 @@ const Details = sequelize.define('u_detail', {
 Details.belongsTo(User, {foreignKey: '_uid', targetKey: 'id'});
 
 Details.sync({force : true})
-    .then(console.log('User Created Successfully'));
+    .then(() => {
+      Details.findOrCreate({
+        where : {
+          _uid : 1
+        },
+        defaults : {
+          contact : 9848828053,
+          firstName : 'Roshan',
+          lastName : 'Bista',
+          organization : 'React Native App'
+        }
+      }).then(console.log('User Details Created Successfully'))
+    });
     
 module.exports = Details
