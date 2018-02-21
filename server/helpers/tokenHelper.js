@@ -1,7 +1,7 @@
-var jwt = require('jsonwebtoken');
-var config = require('../config/config.js');
+cont jwt = require('jsonwebtoken');
+const config = require('../config/config.js');
 
-var tokenDecoder =  {
+const tokenDecoder =  {
     decode : function(token){
         return jwt.decode(token);
     },

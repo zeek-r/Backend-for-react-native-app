@@ -1,6 +1,7 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+const authHelper = require('../helpers/authHelper')
 
-var sequelize = require('../config/database');
+const sequelize = require('../config/database');
 
 var User = sequelize.define('user', {
         id : {
@@ -37,10 +38,10 @@ User.sync({force : false})
             },
             defaults : {
                 email : 'r@r.com',
-                password : 'reactnative@pp',
+                password : authHelper.generateHash('react-native@pp'),
                 status : 'active'
             } 
         }).then(console.log('User Created Successfully'))
     });
-    
+
 module.exports = User;
