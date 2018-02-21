@@ -3,13 +3,18 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const User = require('./user');
 
-const Details = sequelize.define('u_detail', {
+const Details = sequelize.define('u_detail', 
+  {
 			contact : {
       	type: Sequelize.BIGINT,
         allowNull : false
       },
     	_uid : {
-    		type : Sequelize.INTEGER
+        type : Sequelize.INTEGER,
+        references : {
+          key : 'id',
+          model : 'users'
+        }
     	},
     	firstName : {
         type : Sequelize.STRING,
@@ -24,24 +29,7 @@ const Details = sequelize.define('u_detail', {
             type : Sequelize.STRING,
             allowNull : false
       },		
-	}
+  }
 );
 
-Details.belongsTo(User, {foreignKey: '_uid', targetKey: 'id'});
-
-Details.sync({force : true})
-    .then(() => {
-      Details.findOrCreate({
-        where : {
-          _uid : 1
-        },
-        defaults : {
-          contact : 9848828053,
-          firstName : 'Roshan',
-          lastName : 'Bista',
-          organization : 'React Native App'
-        }
-      }).then(console.log('User Details Created Successfully'))
-    });
-    
-module.exports = Details
+module.exports = Details;

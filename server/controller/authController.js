@@ -1,4 +1,5 @@
 var User = require('../model/user'),
+    Roles = require('../model/u_roles'),
     tokenHelper = require('../helpers/tokenHelper'),
     authHelper = require('../helpers/authHelper');
 
@@ -15,7 +16,7 @@ var authController = {
                 updatedAt : new Date(),
             })
             .then(function(){
-                res.json( {message : "User created successfully"} );
+                res.json( {message : "User created successfully"});
             }).catch(function(result) {
             	console.log(result);
                 res.status(401);
@@ -31,7 +32,7 @@ var authController = {
         User.findOne ({ 
             where :  {
                 email : req.body.username
-            }
+            },
         })
         .then (user => {
             if(!user) {
@@ -45,20 +46,24 @@ var authController = {
                 }
 
                  if(authHelper.compare(req.body.password, user.password)){
-                    const payload = {
-                        type : user.type,
-                        email : user.email,
-                        _uid : user.id,
-                        status : user.status,
-                        name : user.firstName + user.lastName
-                    };
-
-                    const token = tokenHelper.sign(payload);
-                    res.json ({
-                        success : true,
-                        token : token,
-                        user : payload
-                    })
+                     Roles.findOne({
+                        where : {
+                            _uid : user.id
+                        }
+                     }).then((role) => {
+                        const payload = {
+                            type : role.type,
+                            email : user.email,
+                            _uid : user.id,
+                            status : user.status,
+                        };
+                        const token = tokenHelper.sign(payload);
+                        res.json ({
+                            success : true,
+                            token : token,
+                            user : payload
+                        })
+                     });
                 }
                 else { 
                     res.status(401);
