@@ -8,15 +8,24 @@ const Roles = sequelize.define('u_roles', {
     		type : Sequelize.INTEGER
     	},
 			type : {
-        type : Sequelize.STRING,
-        allowNull : false
+				type : Sequelize.ENUM('admin', 'user'),
+        defaultValue : 'user'
       }
 	}
 );
 
 Roles.belongsTo(User, {foreignKey: '_uid', targetKey: 'id'});
 
-Roles.sync({force : true})
-    .then(console.log('User Created Successfully'));
+Roles.sync({force : false})
+    .then(() => {
+		Roles.findOrCreate({
+      where : {
+        _uid : 1
+			},
+			defaults : {
+				type : 'admin'
+			}
+		}).then(console.log('Roles Created Successfully'));
+	});
     
 module.exports = Roles;
