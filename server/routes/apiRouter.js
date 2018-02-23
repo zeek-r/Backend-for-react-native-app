@@ -21,12 +21,12 @@ const authRouter = require('./authRouter'),
  * Registered Routes
  */
 
+router.use('/dashboard/*', authMiddleware);
 router.use('/auth', authRouter);
-router.use ('/dashboard/*', authMiddleware);
-router.use('/users', userRouter);
+router.use('/dashboard/users', userRouter);
 
 router.route('/').get(function(req, res) {
-    res.sendFile(path.join(appRoot.path, 'src/index.html'));
+    res.sendFile(path.join(appRoot.path, 'public/index.html'));
 });
 
 

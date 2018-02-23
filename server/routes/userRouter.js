@@ -5,9 +5,7 @@ var userController = require('../controller/userController');
 userRouter.route('/')
     .get(userController.index);
 
-
-
-userRouter.route('/profile/')
+userRouter.route('/profile')
     .get(userController.user);
 
 userRouter.route('/:_id')

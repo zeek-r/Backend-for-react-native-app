@@ -29,9 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Handles all the incoming routes
 app.use('/', router);
 
-
 app.get('*', function(req, res){
-    res.sendFile(path.join(appRoot.path, 'src/index.html'));
+    res.sendFile(path.join(appRoot.path, 'public/index.html'));
 });
 
 module.exports = app;
