@@ -1,12 +1,13 @@
-const Details = require('../model/u_details');
-const Roles = require('../model/u_roles');
+const Details = require('../model/u_details'),
+    Roles = require('../model/u_roles'),
+    User = require('../model/user');
 
 var userController = {
     index : function(req, res) {
-        User.findAll( 
+        Details.findAll( 
             { 
-                attributes : ['firstName', 'lastName', 'email', 'contact', 'organization', 'createdAt', 'status', 'type'] 
-            } 
+                attributes : ['_uid','firstName', 'lastName', 'contact', 'organization', 'createdAt'],
+            }
         ).then(users => {
             const response = {
                 data : users,
@@ -20,11 +21,11 @@ var userController = {
         res.json("user profile displayed");
     },
     user : function(req, res) {
-        User.findOne({
-            attributes : ['id','firstName', 'lastName', 'email', 'contact', 'organization', 'createdAt', 'status', 'type'], 
+        Details.findOne({
+            attributes : ['_uid','firstName', 'lastName', 'contact', 'organization', 'createdAt'], 
             where : {
                 id : req.body._uid
-            }
+            },
         }).then(user => {
             const response = {
                 data : user,
@@ -35,6 +36,9 @@ var userController = {
     },
     activate :  function(req, res) {
         res.json("user activated successfully");
+    },
+    deactivate : function(req, res) {
+        res.json("user deactivated successfully");
     }
 }
 
